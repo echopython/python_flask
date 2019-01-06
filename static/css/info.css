@@ -1,0 +1,23 @@
+body{
+    background-color:#f0f0f0;
+}
+.head1{
+    width:60%;
+    margin:0 auto;
+    height:200px;
+    background-color:white;
+    padding-top:10px;
+    padding-left:15px;
+}
+.head2{
+    width:60%;
+    margin:0 auto;
+    background-color:white;
+    height:200px;
+}
+.up{
+    width:300px;
+    margin:0 auto;
+    text-align:right;
+    padding-top:10px;
+}

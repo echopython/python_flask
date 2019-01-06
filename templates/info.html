@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static',filename="css/info.css") }}">
+{% endblock %}
+{% block content %}
+
+    <div class="head1">
+        <img src="../static/head-image/bilibili.jpg" alt="" class="img-responsive" width="180px" height="180px" align="left" style="margin-right:30px;">
+        <p style="font-size:20px;margin-bottom:20px;">{{ session.name }}<span style="width:50px;height:20px;background-color:black;color:white;margin-left:15px;font-size:12px;">Svip+</span></p>
+        <p style="margin-bottom:20px;">居住地：</p>
+        <p style="margin-bottom:20px;">年龄：</p>
+        <p style="margin-bottom:20px;">个人简介：</p>
+    </div><br />
+    <script>
+    $('#myTabs a').click(function (e) {
+        e.preventDefault()
+    $(this).tab('show')
+    })
+
+    </script>
+    <div class="head2">
+	<ul class="nav nav-tabs" role="tablist" id="myTabs">
+		<li role="presentation" class="active"><a href="#修改密码" aria-controls="修改密码" role="tab" data-toggle="tab">修改密码</a></li>
+		<li role="presentation"><a href="#修改用户名" aria-controls="修改用户名" role="tab" data-toggle="tab">修改用户名</a></li>
+        <li role="presentation"><a href="#Svip" aria-controls="Svip" role="tab" data-toggle="tab">Svip信息</a></li>
+	</ul>
+	<div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="修改密码">
+            <div class="up">
+                <form action="/upPassWord/" method="post">
+                    <div class="form-group">
+                        <input type="password" name="new_password1" class="form-control" placeholder="新密码">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="new_password2" class="form-control" placeholder="确认密码">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">更改</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+		<div role="tabpanel" class="tab-pane" id="修改用户名">
+            <div class="up">
+                <form action="/upUserName/" method="post">
+                    <div class="form-group">
+                        <input type="text" name="new_username" class="form-control" placeholder="新名称">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">更改</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="Svip">这是Svip信息</div>
+	</div>
+</div>
+
+{% endblock %}

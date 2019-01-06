@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/base.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>{% block title %}树洞{% endblock %}</title>
+	<style>
+		.h{ padding-bottom: 48px; }
+		*{ margin:0;padding:0; }
+	</style>
+    {% block head %}{% endblock %}
+</head>
+<body>
+<div class="h"><nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="box-shadow: 0 0 5px #888;background-color: white;">
+
+    <div class="container">
+	<div class="container-fluid">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#example-navbar-collapse">
+			<span class="sr-only">切换导航</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="{{ url_for("index") }}">树洞</a>
+
+	</div>
+	<div class="collapse navbar-collapse" id="example-navbar-collapse">
+		<ul class="nav navbar-nav">
+			<li class="active"><a href="#">首页</a></li>
+			<li><a href="{{ url_for("article") }}">热门</a></li>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					我的 <b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a href="{{ url_for("my_article") }}">我的文章</a></li>
+					<li class="divider"></li>
+					<li><a href="{{ url_for("question") }}">发布文章</a></li>
+				</ul>
+			</li>
+            <li><form class="navbar-form navbar-left" role="search" action="{{ url_for('search') }}" method="get">
+                <div class="form-group">
+                    <input type="text" name="q" class="form-control" placeholder="关键字搜索文章">
+                </div>
+                <button type="submit" class="btn btn-default">搜索</button>
+            </form></li>
+
+		</ul>
+
+    <ul class="nav navbar-nav navbar-right">
+        {% if not session['name'] %}
+              <li><a href="{{ url_for("registe") }}"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
+              <li><a href="{{ url_for("login") }}"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+        {% else %}
+            <li><a href="{{ url_for("info") }}"><span class="glyphicon glyphicon-record"></span> {{ session.name }}</a></li>
+            <li><a href="{{ url_for("clear") }}"><span class="glyphicon glyphicon-remove-circle"></span> 注销</a></li>
+        {% endif %}
+    </ul>
+
+	</div>
+
+	</div>
+    </div>
+</nav></div>
+<div>
+    {% block content %}{% endblock %}
+</div>
+</body>
+</html>

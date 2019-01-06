@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}详情-{% endblock %}
+
+{% block head %}
+    <style>
+    body{
+        background:#f3f3f3;
+    }
+    </style>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/detail.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="main">
+<h3 class="page-title">{{ question.title }}</h3>
+    <p class="question-info">
+    <span style="margin-right:15px;">作者：{{ question.author.uname }}</span>
+    <span>时间：{{ question.create_time }}</span>
+    </p>
+    <hr>
+    <p class="question-content"><pre>{{ question.content }}</pre></p>
+    <hr>
+        <script type="text/javascript">
+            function aaa() {
+                var temp = document.getElementById('licount');
+                var linum = temp.getElementsByTagName("li").length;
+                $("#count").text(linum);
+            }
+            window.onload = aaa;
+        </script>
+    <h4>评论：(<span id="count"></span>)</h4>
+        <form action="{{ url_for('add_answer') }}" method="post">
+            <div class="form-group">
+                <input type="text" name="answer_content" class="form-control" placeholder="在这里填写评论">
+                <input type="hidden" name="question_id" value="{{ question.id }}">
+            </div>
+            <div class="form-group" style="text-align:right;">
+                <button class="btn btn-primary">立即评论</button>
+            </div>
+
+        </form>
+        <ul class="answer-list" id="licount">
+            {% for answer in question.answers %}
+                <li>
+                <div class="user-info">
+                    <img src="{{ url_for('static',filename='head-image/bilibili.jpg') }}" alt="" class="avatar">
+                    <span class="username">{{ answer.author.uname }}</span>
+                    <span class="create-time">{{ answer.create_time }}</span>
+                </div>
+                <p class="answer-content">{{ answer.content }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+</div>
+{% endblock %}
