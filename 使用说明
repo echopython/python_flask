@@ -1,0 +1,9 @@
+1.  mysql建库，库名称：miao。如不想要这个名称需要去xxx.sql里面的database：{“这里填库名”}
+2.  mysqldump导入xxx.sql文件。
+3.  shudong.py为主文件，如修改了库名，需去config.py里面DATABASE="这里填库名"修改。
+4.  启动shudong.py。
+5.  在导航栏我的<我的文章。初次点击会有报错。注册登录后随便发布一篇文章就ok了，这个bug因本人懒得解决，如要解决，在shudong.py文件里面my_article()
+ 函数内加个try就可以解决。
+
+
+注解：因为花了三四天就完成的东西。没有太花心思。有点小bug见谅。
